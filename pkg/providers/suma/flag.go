@@ -24,7 +24,7 @@ const joinUsageExample = `  autok3s -d join \
 	--burn-them-all <burn-them-all>
 `
 
-func (p *Native) GetUsageExample(action string) string {
+func (p *Suma) GetUsageExample(action string) string {
 	switch action {
 	case "create":
 		return createUsageExample
@@ -35,7 +35,7 @@ func (p *Native) GetUsageExample(action string) string {
 	}
 }
 
-func (p *Native) GetCreateFlags() []types.Flag {
+func (p *Suma) GetCreateFlags() []types.Flag {
 	cSSH := p.GetSSHConfig()
 	p.SSH = *cSSH
 	fs := p.GetClusterOptions()
@@ -43,11 +43,11 @@ func (p *Native) GetCreateFlags() []types.Flag {
 	return fs
 }
 
-func (p *Native) GetOptionFlags() []types.Flag {
+func (p *Suma) GetOptionFlags() []types.Flag {
 	return p.sharedFlags()
 }
 
-func (p *Native) GetJoinFlags() []types.Flag {
+func (p *Suma) GetJoinFlags() []types.Flag {
 	fs := p.sharedFlags()
 	fs = append(fs, p.GetClusterOptions()...)
 	fs = append(fs, types.Flag{
@@ -59,19 +59,19 @@ func (p *Native) GetJoinFlags() []types.Flag {
 	return fs
 }
 
-func (p *Native) GetSSHFlags() []types.Flag {
+func (p *Suma) GetSSHFlags() []types.Flag {
 	return []types.Flag{}
 }
 
-func (p *Native) GetDeleteFlags() []types.Flag {
+func (p *Suma) GetDeleteFlags() []types.Flag {
 	return []types.Flag{}
 }
 
-func (p *Native) GetCredentialFlags() []types.Flag {
+func (p *Suma) GetCredentialFlags() []types.Flag {
 	return []types.Flag{}
 }
 
-func (p *Native) GetSSHConfig() *types.SSH {
+func (p *Suma) GetSSHConfig() *types.SSH {
 	ssh := &types.SSH{
 		SSHUser:    defaultUser,
 		SSHPort:    "22",
@@ -80,15 +80,15 @@ func (p *Native) GetSSHConfig() *types.SSH {
 	return ssh
 }
 
-func (p *Native) BindCredential() error {
+func (p *Suma) BindCredential() error {
 	return nil
 }
 
-func (p *Native) MergeClusterOptions() error {
+func (p *Suma) MergeClusterOptions() error {
 	return nil
 }
 
-func (p *Native) sharedFlags() []types.Flag {
+func (p *Suma) sharedFlags() []types.Flag {
 	fs := []types.Flag{
 		{
 			Name:  "master-ips",
