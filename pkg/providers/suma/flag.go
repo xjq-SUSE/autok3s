@@ -10,6 +10,7 @@ const createUsageExample = `  autok3s -d create \
     --suma-user <suma-user> \
     --suma-password <suma-password> \
 	--group <group> \
+	--ssh-key-path <ssh-key-path> \
 	--master-nodes <master-nodes> \
 	--burn-them-all <burn-them-all>
 `
@@ -20,6 +21,7 @@ const joinUsageExample = `  autok3s -d join \
 	--suma-user <suma-user> \
 	--suma-password <suma-password> \
 	--group <group> \
+	--ssh-key-path <ssh-key-path> \
 	--master-node <master-node> \
 	--worker-nodes <worker-nodes>
 `
