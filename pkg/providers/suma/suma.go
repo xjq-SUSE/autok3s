@@ -351,6 +351,7 @@ func (p *Suma) GetProviderOptions(opt []byte) (interface{}, error) {
 }
 
 func (p *Suma) assembleNodeStatus(ssh *types.SSH) (*types.Cluster, error) {
+	//Get ip list from suma API
 	if p.MasterIps != "" {
 		masterIps := strings.Split(p.MasterIps, ",")
 		p.syncNodesMap(masterIps, true, ssh)
