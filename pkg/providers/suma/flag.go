@@ -21,7 +21,7 @@ const joinUsageExample = `  autok3s -d join \
 	--suma-password <suma-password> \
 	--group <group> \
 	--master-node <master-node> \
-	--burn-them-all <burn-them-all>
+	--worker-nodes <worker-nodes>
 `
 
 func (p *Suma) GetUsageExample(action string) string {
@@ -91,16 +91,52 @@ func (p *Suma) MergeClusterOptions() error {
 func (p *Suma) sharedFlags() []types.Flag {
 	fs := []types.Flag{
 		{
-			Name:  "master-ips",
-			P:     &p.MasterIps,
-			V:     p.MasterIps,
-			Usage: "Public IPs of master nodes on which to install agent, multiple IPs are separated by commas",
+			Name:  "suma-server",
+			P:     &p.SumaServer,
+			V:     p.SumaServer,
+			Usage: "IP address of SUMA server",
+		},
+		{
+			Name:  "suma-user",
+			P:     &p.SumaUser,
+			V:     p.SumaUser,
+			Usage: "Username of SUMA server",
+		},
+		{
+			Name:  "suma-password",
+			P:     &p.SumaPassword,
+			V:     p.SumaPassword,
+			Usage: "Password of SUMA server",
+		},
+		{
+			Name:  "group",
+			P:     &p.Group,
+			V:     p.Group,
+			Usage: "SUMA group to create K3S cluster",
+		},
+		{
+			Name:  "master-nodes",
+			P:     &p.MasterNodes,
+			V:     p.MasterNodes,
+			Usage: "Hostnames of nodes to install K3S master,separated by commas",
+		},
+		{
+			Name:  "worker-nodes",
+			P:     &p.WorkerNodes,
+			V:     p.WorkerNodes,
+			Usage: "Hostnames of nodes to install K3S worker,separated by commas",
 		},
 		{
 			Name:  "worker-ips",
 			P:     &p.WorkerIps,
 			V:     p.WorkerIps,
 			Usage: "Public IPs of worker nodes on which to install agent, multiple IPs are separated by commas",
+		},
+		{
+			Name:  "burn-them-all",
+			P:     &p.BurnThemAll,
+			V:     p.BurnThemAll,
+			Usage: "Flag to use all the nodes in SUMA group",
 		},
 	}
 
